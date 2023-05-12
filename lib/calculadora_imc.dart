@@ -16,7 +16,13 @@ execute() {
   pessoa.setAltura(altura);
   Calculadora calculadora = Calculadora();
   double resultadoIMC = calculadora.calcularIMC(pessoa);
-  ClassificacaoIMC classificacaoIMC = calculadora.classificarIMC(resultadoIMC);
-  print(
-      "${pessoa.getNome()} seu IMC é de ${resultadoIMC.toStringAsFixed(2)} e sua classificação: ${classificacaoIMC.descricao}");
+  try {
+    ClassificacaoIMC classificacaoIMC =
+        calculadora.classificarIMC(resultadoIMC);
+    print(
+        "${pessoa.getNome()} seu IMC é de ${resultadoIMC.toStringAsFixed(2)} e sua classificação: ${classificacaoIMC.descricao}");
+  } catch (ClassificacaoException) {
+    print(
+        "${pessoa.getNome()} seu IMC é de ${resultadoIMC} e não há classificação para esse valor");
+  }
 }
